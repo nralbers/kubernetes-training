@@ -10,7 +10,8 @@ Kubernetes Workshop
    :maxdepth: 2
    :caption: Contents:
 
-   basics
+   connecting
+   concepts
 
 
 
