@@ -1,8 +1,14 @@
+.. image:: ./_static/logo.png
+   :height: 100px
+   :width: 100px
+   :alt: Kubernetes Logo
+   :align: right
+
 Connecting
 ==========
 
-- Managing resources in kubernetes is performed using the kubectl tool.
-- This is installed locally, and connects to remote clusters using information in the kubeconfig file
+- Managing resources in kubernetes is performed using the :code:`kubectl` tool.
+- This is installed locally, and connects to remote clusters using information in the :code:`kubeconfig` file
 
 Local Installation using minikube
 ---------------------------------

@@ -3,8 +3,15 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+.. image:: ./_static/logo.png
+   :height: 100px
+   :width: 100px
+   :alt: Kubernetes Logo
+   :align: right
+
 Kubernetes Workshop
 ===============================================
+
 
 .. toctree::
    :maxdepth: 2
@@ -12,6 +19,8 @@ Kubernetes Workshop
 
    connecting
    concepts
+   basic_application
+   container_configuration
 
 
 
