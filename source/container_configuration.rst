@@ -4,6 +4,8 @@
    :alt: Kubernetes Logo
    :align: right
 
+.. _container_configuration:
+
 Container configuration
 =========================
 

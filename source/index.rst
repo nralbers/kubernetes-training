@@ -20,8 +20,10 @@ Kubernetes Workshop
    connecting
    concepts
    basic_application
+   12factor
    resilience
    container_configuration
+   external_endpoints
 
 
 
