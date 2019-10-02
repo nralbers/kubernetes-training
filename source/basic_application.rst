@@ -14,6 +14,8 @@ To create a simple application, we will need 2 things:
 
 Normally, you would create the service definition FIRST.
 
+.. _basic_example:
+
 Example Deployment
 ------------------
 

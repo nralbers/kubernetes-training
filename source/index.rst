@@ -20,6 +20,7 @@ Kubernetes Workshop
    connecting
    concepts
    basic_application
+   resilience
    container_configuration
 
 

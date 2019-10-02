@@ -103,4 +103,132 @@ Example
         emptyDir: {}
 
 
+ConfigMaps
+----------
+
+`ConfigMaps <https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/>`_ are a method of
+storing application configuration information.
+
+- ConfigMaps can be mounted as Volumes
+- ConfigMaps can be exposed as environment variables
+- ConfigMap volume mounts are updated if the ConfigMap is updated
+- ConfigMaps are similar to secrets, but are not designed for storing sensitive data.
+
+Usage
+^^^^^
+
+- `Using a configmap to create environment variables
+  <https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#define-a-container-environment-variable-with-data-from-a-single-configmap>`_
+- `Populate a volume with ConfigMap data
+  <https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap>`_
+
+Example
+^^^^^^^
+
+*configmap-multikeys.yaml*
+
+.. code-block:: yaml
+
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: special-config
+      namespace: default
+    data:
+      SPECIAL_LEVEL: very
+      SPECIAL_TYPE: charm
+
+Create the ConfigMap:
+
+.. code-block:: bash
+
+    kubectl create -f configmap-multikeys.yaml
+
+Create a Pod that uses the ConfigMap
+
+*pod-configmap-volume.yaml*
+
+.. code-block:: yaml
+
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: dapi-test-pod
+    spec:
+      containers:
+        - name: test-container
+          image: k8s.gcr.io/busybox
+          command: [ "/bin/sh", "-c", "ls /etc/config/" ]
+          volumeMounts:
+          - name: config-volume
+            mountPath: /etc/config
+      volumes:
+        - name: config-volume
+          configMap:
+            # Provide the name of the ConfigMap containing the files you want
+            # to add to the container
+            name: special-config
+      restartPolicy: Never
+
+.. code-block:: bash
+
+  kubectl apply -f pod-configmap-volume.yaml
+
+Output
+
+.. code-block:: bash
+
+    SPECIAL_LEVEL
+    SPECIAL_TYPE
+
+Secrets
+-------
+
+`Secrets <https://kubernetes.io/docs/concepts/configuration/secret/>`_ are a method for passing sensitive information
+to Pods.
+
+- Secrets can be mounted as data volumes
+- Secrets can be exposed as environment variables
+- Secret volume mounts are updated automatically if the secret is changed
+- ImagePullSecrets are used to pass image repository credentials to Pods
+
+Example
+^^^^^^^
+
+Creating a secret from a file:
+
+.. code-block:: bash
+
+    # Create files needed for rest of example.
+    echo -n 'admin' > ./username
+    echo -n '1f2d1e2e67df' > ./password
+
+    kubectl create secret generic mysecret --from-file=./username --from-file=./password
+
+Using a secret in an environment variable:
+
+.. code-block:: yaml
+
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: secret-env-pod
+    spec:
+      containers:
+      - name: mycontainer
+        image: redis
+        env:
+          - name: SECRET_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: username
+          - name: SECRET_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysecret
+                key: password
+      restartPolicy: Never
+
+
 
