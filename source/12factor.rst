@@ -47,7 +47,8 @@ IV. Read service connection parameters from environment. These can be mapped fro
 VIII. Do not use or assume session affinity exists in your application. Session state must be explicitly managed and
       stored in a backing service.
 
-IX. Application should shutdown gracefully on receiving a SIGTERM signal.
+IX. Application should shutdown gracefully on receiving a SIGTERM signal. Applications should expose a health endpoint,
+    or have other means of detecting a process in an unhealthy state. See :ref:`health_probes` for more information.
 
 XI. Application MUST output logs to stdout only. Using some kind of structured log library, and/or exposing the logs
     as json will allow easy parsing and splitting of log data into categories.

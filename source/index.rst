@@ -9,21 +9,24 @@
    :alt: Kubernetes Logo
    :align: right
 
-Kubernetes Workshop
-===============================================
+.. include:: ../README.rst
+   :start-after: -start-doc-
+   :end-before: -end-doc-
 
+Contents
+========
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
    connecting
    concepts
    basic_application
    12factor
-   resilience
    container_configuration
+   resilience
    external_endpoints
+   advanced_topics
 
 
 

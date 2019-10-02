@@ -45,6 +45,8 @@ It is possible to scale a deployment down or up using the :code:`kubectl scale` 
 Full documentation on scaling deployments can be found
 `here <https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#scaling-a-deployment>`_
 
+.. _health_probes:
+
 Detection of unhealthy containers
 ---------------------------------
 
