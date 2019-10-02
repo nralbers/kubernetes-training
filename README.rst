@@ -1,4 +1,4 @@
-.. image:: ./_static/logo.png
+.. image:: ./source/_static/logo.png
    :height: 100px
    :width: 100px
    :alt: Kubernetes Logo
