@@ -31,7 +31,7 @@ Simple Example
 ##############
 
 This is a simple ingress rule for an ingress-nginx controller using an external load balancer configured to offload SSL.
-There is a wildcard cert and wildcard dns route to *.example.com.
+There is a wildcard cert and wildcard dns route to \*.example.com.
 
 .. code-block:: yaml
 
