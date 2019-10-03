@@ -27,6 +27,7 @@ Contents
    resilience
    external_endpoints
    advanced_topics
+   kubectl_commands
 
 
 
