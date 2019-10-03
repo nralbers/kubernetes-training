@@ -11,6 +11,8 @@ External Endpoints
 - These use an `Ingress Controller <https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/>`_ to
   route traffic from outside your kubernetes cluster to the services inside.
 - A cluster may have multiple ingress controllers. Which one is used is determined by the annotations on the Ingress rule.
+- For more information on the NGINX ingress controller, and the specific configuration options for Ingress rules using it,
+  see `NGINX Ingress Controler User guide <https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/>`_
 
 Ingress rules
 -------------
@@ -25,6 +27,33 @@ Ingress rules define how an external endpoint (usually a DNS name) should be rou
 Example
 ^^^^^^^
 
+Simple Example
+##############
+
+This is a simple ingress rule for an ingress-nginx controller using an external load balancer configured to offload SSL.
+There is a wildcard cert and wildcard dns route to *.example.com.
+
+.. code-block:: yaml
+
+    apiVersion: extensions/v1beta1
+    kind: Ingress
+    metadata:
+      name: nginx
+      annotations:
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    spec:
+      rules:
+      - host: nginx.example.com
+        http:
+          paths:
+          - backend:
+              serviceName: nginx-service
+              servicePort: 80
+
+
+Advanced Example
+################
+
 This is an example from a production system using letsencrypt and using an external oAuth proxy to validate access
 to the resource. It is using:
 
@@ -33,7 +62,7 @@ to the resource. It is using:
 - `oauth2_proxy <https://hub.docker.com/r/machinedata/oauth2_proxy/>`_
 - An azure AD application resource for authorization (configured in the oauth2_proxy)
 
-.. code-block::
+.. code-block:: yaml
 
     apiVersion: extensions/v1beta1
     kind: Ingress
